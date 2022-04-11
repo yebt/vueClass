@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+        <title>Learning V</title>
+
+        <link rel="icon" type="image/x-icon" href="./assents/images/bonsai.png">
+    </head>
+    <body>
+        <!-- Here load the vue app -->
+
+        <div id="app">
+
+            <!-- call value from data -->
+            <h1>{{ title }}</h1>
+            <!-- add keyevent -->
+            <input type="text" v-model="newFruit" @keyup.enter="addFruit">
+            <!-- call function on click -->
+            <button @click="addFruit"> add fruit</button>
+
+            <!-- for loop -->
+            <ul>
+                <li v-for="fruit of fruits"> {{ fruit }} </li>
+            </ul>
+            <!-- Frutar en objetos -->
+            <ul>
+                <li v-for="fr of frutas_obj">
+                    {{fr.icon}} : {{ fr.name }} - <small><em>{{fr.status}}</em></small> : 
+                    <!-- <span v-if="fr.stock >0"> --> 
+                    <span > 
+                        <strong> 
+                            <input type="number" v-model.number="fr.stock" >
+                            <!-- {{ fr.stock }} -->
+                        </strong> 
+                        <button @click="fr.stock++">+</button>
+                    </span>
+                    <span v-if="fr.stock === 0"> <strong style="color: red"> Sold Out </strong> </span>
+                </li>
+            </ul>
+            <h4>Total: {{ sumFruits }}</h4>
+        </div>
+
+
+
+
+
+        <!-- Import Vue.js -->
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <!-- production version, optimized for size and speed -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+
+        <!-- My scripts -->
+        <script src="01.js"></script>
+    </body>
+</html>
