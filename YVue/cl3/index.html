@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="./assents/images/bonsai.png"
+            type="image/x-icon"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.min.css"
+        />
+        <!-- < link -->
+        <!--     href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" -->
+        <!--     rel="stylesheet" -->
+        <!--     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" -->
+        <!--     crossorigin="anonymous" -->
+        <!-- /> -->
+
+        <!--  Bootstrap icons  -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+        />
+
+        <!-- Material icons -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+
+        <title>Learn V2</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container mt-5">
+                <div class="d-flex">
+                    <h3>{{ title }}</h3>
+                    <span class="text-end flex-fill">b3y</span>
+                </div>
+
+                <!-- :class="{'form-control', 'is-invalid' :validTaskText}" -->
+                <div class="input-group mb-3 has-validation">
+                    <input
+                        type="text"
+                        class="form-control"
+                        :class="{'is-invalid':validTaskText}"
+                        placeholder="Task"
+                        aria-label="Task"
+                        v-model="newTask"
+                        required
+                    />
+                    <span
+                        class="input-group-text bi-chat-square-quote-fill fs-4"
+                    ></span>
+                    <div class="invalid-feedback">
+                        Fill the f***ing field before sending it! >:v
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" @click="addTask">add</button>
+
+                <div class="mt-3">
+                    <!-- if the task listt be empty -->
+                    <div
+                        v-if="task_list.length === 0"
+                        class="alert alert-info"
+                        role="alert"
+                    >
+                        Empty task list!!
+                    </div>
+                    <!-- show eements -->
+                    <div v-else v-for="(task, index) of task_list">
+                        <div class="alert alert-primary" :class="{'alert-success': task.status !== 0}" role="alert">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+
+                                    <span class="bi me-3" :class="{'bi-square': task.status === 0, 'bi-check-square-fill': task.status !== 0 }"></span>
+                                    <span >{{task.title}}</span>
+                                </div>
+                                <div class="">
+                                    <!-- <button class="btn btn-primary bi bi-arrow-up-right-square-fill"></button> -->
+                                    <button
+                                        class="btn btn-outline-dark border-0 px-2 py-1 bi bi-arrows-angle-expand fs-5 rounded"
+                                        title="Show info"
+                                    ></button>
+                                    <button
+                                        class="btn btn-outline-success border-0 px-2 py-1 bi fs-4 fw-bold rounded "
+                                        :class="{'bi-check-lg': task.status === 0, 'bi-x-lg': task.status !== 0, 'btn-outline-warning': task.status !== 0} "
+                                        :title="task.status === 0 ? 'Mark As Done!!': 'Mark as Missing'"
+                                        @click="changeTaskStatus(index)"
+                                    ></button>
+                                    <button
+                                        class="btn btn-outline-danger border-0 px-2 py-1 bi bi-trash-fill fs-5 rounded"
+                                        title="delete task"
+                                        @click="deleteTask(index)"
+                                    ></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- javascript: -->
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+        ></script>
+        <!-- import vue cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <!-- scripts -->
+        <script src="scripts.js"></script>
+    </body>
+</html>

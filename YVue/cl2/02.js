@@ -4,7 +4,7 @@ const app = new Vue({
     data: {
         // call the bootstrap class
         fondo: 'bg-warning',
-        color: 'false'
+        color: false
     },
     methods: {},
     computed: {},
