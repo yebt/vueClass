@@ -24,8 +24,14 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ServicesView.vue')
+    component: () => import(/* webpackChunkName: "services" */ '../views/ServicesView.vue')
   },
+  // add dynamic route
+  {
+    path: '/photos/:id', // id from photo
+    name: 'photos',
+    component: () => import(/* webpackChunkName: "services" */ '../views/PhotosView.vue')
+  }
 ]
 
 const router = new VueRouter({
